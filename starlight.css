@@ -68,6 +68,17 @@ font-size: 12px;
 
 label{font-size: 80%;}
 
+select{
+padding: 1em 1em;
+font-family: inherit;
+background-color: #FFFFFF;
+border: 1px solid #0000FF;
+border-radius: 0px;
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+
 
 #mainbody{text-align: center;}
 #calc_result{
