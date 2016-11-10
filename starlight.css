@@ -71,7 +71,7 @@ label{font-size: 80%;}
 select{
 padding: 1em 1em;
 font-family: inherit;
-background-color: #FFFFFF;
+background: url('./resources/dropdown.jpg') no-repeat;
 border: 1px solid #0000FF;
 border-radius: 0px;
 -webkit-appearance: none;
