@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>스타라이트 스테이지 스태미나 회복 계산기</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=100%, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="starlight.css" />
+<script type="text/javascript" src="starlight_livepoint.js"></script>
+</head>
+<body onload="displayMaxPoint();">
+
+<div id="mainbody">
+<h2>스타라이트 스테이지 스태미나 회복시간 계산기 (Beta)</h2>
+
+<p id="how_to_use">
+[현재 레벨] 란에는 현재 자신의 프로듀서 레벨(최대 300)을, <br />
+[현재 스태미나 수치]란에는 해당 레벨의 최대 스태미나(입력란 옆에 표시됨) 범위 내에서 현재 스태미나 수치를 입력하세요.
+</p>
+
+<form method="get" action="javascript:dummyact();">
+
+<div id="calc_form">
+현재 레벨 : <input type="number" class="inNum" style="ime-mode:disabled;" onkeypress="displayMaxPoint(); if((event.keyCode<48) || (event.keyCode>57)) event.returnValue=false;" onkeyup="displayMaxPoint();" onchange="displayMaxPoint();" name="prod_level" id="prod_level" size="1" min="1" max="300" /> (
+현재 스태미나 수치 : <input type="number" class="inNum" style="ime-mode:disabled;" onkeypress="if((event.keyCode<48) || (event.keyCode>57)) event.returnValue=false;" name="point_now" id="point_now" size="1" min="1" max="100" /> / <span id="max_point"></span> )
+</div>
+<input type="button" class="generalBtns calcBtns" value="계산" onclick="calcPoint();" />
+
+</form>
+
+<div id="calc_result">
+</div>
+
+
+<hr />
+
+<h3>참고자료</h3>
+
+<a href="http://www.inven.co.kr/board/powerbbs.php?come_idx=4104&p=3&l=253">레벨별 경험치표</a>
+
+<h3>기타 유용한 사이트 및 페이지 일람</h3>
+
+<a href="https://deresute.me/">프로필 만들기 (일본어)</a><br />
+<a href="http://yykn.jp/ss/">점수 계산기 (일본어)</a><br />
+<a href="https://deresute.info/">수록곡 채보 모음</a><br />
+<a href="https://starlight.kirara.ca">아이돌/카드 정보</a><br />
+<a href="http://imas.inven.co.kr/">아이마스 인벤</a><br />
+
+<hr />
+
+<p id="author_info">
+제작자 : 세나린 (게임 ID : <a href="https://deresute.me/408267419/large">408267419</a>)<br />
+<b>주</b> : 이 프로그램은 반다이 남코 엔터테인먼트 및 사이게임즈(Cygames)와 <b>직접적 연관이 없습니다.</b><br />
+<b>Disclaimer</b> : This Program is <b>not</b> endorsed by nor affiliated with Bandai Namco and Cygames.
+</p>
+
+
+</div>
+</body>
+</html>
+
+

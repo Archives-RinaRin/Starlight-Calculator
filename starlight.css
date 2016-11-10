@@ -1,0 +1,77 @@
+@font-face {font-family: NanumGothic; src:url('./resources/NanumGothic.woff') format('woff');}
+@font-face {font-family: NanumBarunGothic; src:url('./resources/NanumBarunGothic.woff') format('woff');}
+
+
+body{
+font-family: Arial, NanumBarunGothic;
+font-size: 1em;
+background-color: #C2DFFF;
+line-height: 173%;
+}
+
+span{
+color: #282828;
+text-decoration: none;
+}
+
+a:link{
+color: #282828;
+text-decoration: none;
+}
+a:active{
+color: #CCCCCC;
+text-decoration: none;
+}
+a:visited{
+color: #777777;
+text-decoration: none;
+}
+a:hover{
+color: #AAAAAA;
+text-decoration: none;
+}
+
+input{
+font-family: Tahoma;
+}
+
+input[type="number"]{width: 55px;}
+
+input.inNum{
+height: 2em;
+width: 7em;
+font-size: 1em;
+}
+
+input.generalBtns{
+background-color: #FFFFFF;
+cursor: pointer;
+font-family: NanumGothic;
+border: 1px solid #0000FF;
+border-radius: 3px;
+}
+
+input.calcBtns{
+margin-top: 1em;
+margin-bottom: 1em;
+padding : 1.4em 8em;
+font-size : 1.1em;
+}
+
+abbr{cursor: help;}
+
+table,tr,td{
+border: 1px solid #000000;
+border-collapse: collapse;
+font-size: 12px;
+}
+
+label{font-size: 90%;}
+
+
+#mainbody{text-align: center;}
+#calc_result{
+font-size: 140%;
+margin: 2em;
+}
+#author_info{font-size: 90%;}
