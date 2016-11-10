@@ -69,11 +69,13 @@ font-size: 12px;
 label{font-size: 80%;}
 
 select{
-padding: 0.8m 0.5em;
+padding: 0.8em 0.5em;
+margin-top: 1em;
+margin-bottom: 1em;
+width: 180px;
 font-size: 14px;
 font-family: inherit;
-background-color: #FFFFFF;
-background: url('./resources/dropdown.jpg') no-repeat 95% 50%;
+background: #FFFFFF url('./resources/dropdown.jpg') no-repeat 95% 50%;
 border: 1px solid #0000FF;
 border-radius: 0px;
 -webkit-appearance: none;
