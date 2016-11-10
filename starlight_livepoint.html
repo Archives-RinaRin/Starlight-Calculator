@@ -13,18 +13,49 @@
 <h2>스타라이트 스테이지 스태미나 회복시간 계산기 (Beta)</h2>
 
 <p id="how_to_use">
-[현재 레벨] 란에는 현재 자신의 프로듀서 레벨(최대 300)을, <br />
-[현재 스태미나 수치]란에는 해당 레벨의 최대 스태미나(입력란 옆에 표시됨) 범위 내에서 현재 스태미나 수치를 입력하세요.
+우선 [현재 레벨] 란에 현재 자신의 프로듀서 레벨(최대 300)을 입력해주세요.<br />
+그런 다음 다음 두가지 중 하나를 선택해서 계산해주시면 됩니다.<br />
+
+<h4>단순히 현재 남은 스태미나 수치를 기준으로 회복시간을 계산할 때</h4>
+[현재 스태미나 수치]란에 해당 레벨의 최대 스태미나(입력란 옆에 표시됨) 범위 내에서 현재 스태미나 수치를 입력해주세요.<br />
+
+<h4>특정 스태미나의 곡을 몇번 플레이하는지에 따른 회복시간을 계산할 때</h4>
+[곡별 소모]란에서 자신이 원하는 곡별 소모 스태미나를 선택하시고<br />
+[해당하는 곡 수]란에 [곡별 소모]란에서 선택한 소모 스태미나에 해당하는 곡들의 총 플레이 횟수를 입력해주세요.
 </p>
-
+<hr />
 <form method="get" action="javascript:dummyact();">
-
-<div id="calc_form">
+<h3>프로듀서 레벨 입력</h3>
 현재 레벨 : <input type="number" class="inNum" style="ime-mode:disabled;" onkeypress="displayMaxPoint(); if((event.keyCode<48) || (event.keyCode>57)) event.returnValue=false;" onkeyup="displayMaxPoint();" onchange="displayMaxPoint();" name="prod_level" id="prod_level" size="1" min="1" max="300" />
-<br />
+
+<h4>현재 스태미나에 따른 계산</h4>
+<div id="calc_form">
 현재 스태미나 수치 : <input type="number" class="inNum" style="ime-mode:disabled;" onkeypress="if((event.keyCode<48) || (event.keyCode>57)) event.returnValue=false;" name="point_now" id="point_now" size="1" min="1" max="100" /> / <span id="max_point"></span>
 </div>
 <input type="button" class="generalBtns calcBtns" value="계산" onclick="calcPoint();" />
+
+<h4>곡별 소모 스태미나에 따른 계산</h4>
+<div id="calc_form_02">
+곡별 소모 스태미나 : 
+<select name="pts_per_song" id="pts_per_song">
+<option value="10">데뷔 (10스태미나)</option>
+<option value="11">데뷔 (11스태미나)</option>
+<option value="12">레귤러 (12스태미나)</option>
+<option value="13">레귤러 (13스태미나)</option>
+<option value="14">레귤러 (14스태미나)</option>
+<option value="15">프로 (15스태미나)</option>
+<option value="16">프로 (16스태미나)</option>
+<option value="17">프로 (17스태미나)</option>
+<option value="18">마스터 (18스태미나)</option>
+<option value="19" selected="selected">마스터 (19스태미나)</option>
+</select>
+<br />
+해당하는 곡 수 : <input type="number" class="inNum" style="ime-mode:disabled;" onkeypress="if((event.keyCode<48) || (event.keyCode>57)) event.returnValue=false;" name="num_songs" id="num_songs" size="1" min="1" max="1024" />
+</div>
+<input type="button" class="generalBtns calcBtns" value="계산" onclick="calcPointPerSong();" />
+<br />
+<input type="reset" class="generalBtns calcBtns" value="입력값 초기화" />
+
 
 </form>
 

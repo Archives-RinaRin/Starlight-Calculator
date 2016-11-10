@@ -94,9 +94,47 @@ var elapsedMins = dmod(((maxPoint-curPoint) * 5),60);
 var estimatedTimeFormat = estimatedMonth+"월 "+estimatedDate+"일 "+estimatedHour+"시 "+estimatedMin+"분";
 var curTimeFormat = curMonth+"월 "+curDate+"일 "+curHour+"시 "+curMin+"분";
 
-document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", 현재 수치 : "+curPoint+"<br />기준 시간 : "+curTimeFormat+"<br />예상 시간 : "+estimatedTimeFormat+" 전후 ("+elapsedHours+"시간 "+elapsedMins+"분 전후)"
-
-
+document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", 현재 수치 : "+curPoint+"<br />기준 시간 : "+curTimeFormat+"<br />예상 시간 : "+estimatedTimeFormat+" 전후 ("+elapsedHours+"시간 "+elapsedMins+"분 전후)";
 }
 
+function calcPointPerSong(){
+var pointsPerSong = new Number(document.getElementById("pts_per_song").value);
+var numOfSongs = new Number(document.getElementById("num_songs").value);
+
+var totalPoints = (pointsPerSong * numOfSongs);
+
+
+var curTimestamp = new Date();
+var maxPoint = maxPointsByLevel();
+
+var elapsedTime = Math.abs(5 * 60 * (maxPoint-(maxPoint-totalPoints)));
+
+if((maxPoint-totalPoints) < 0){
+alert("소모되는 스태미나가 최대 스태미나보다 많습니다.");
+return;
+}
+
+var estimatedMaxPointTime = new Date(new Number(curTimestamp)+(1000 * elapsedTime));
+
+var curMonth = curTimestamp.getMonth()+1;
+var curDate = curTimestamp.getDate();
+var curHour = curTimestamp.getHours();
+var curMin = curTimestamp.getMinutes();
+
+
+var estimatedMonth = estimatedMaxPointTime.getMonth()+1;
+var estimatedDate = estimatedMaxPointTime.getDate();
+var estimatedHour = estimatedMaxPointTime.getHours();
+var estimatedMin = estimatedMaxPointTime.getMinutes();
+
+var elapsedHours = Math.floor(((maxPoint-(maxPoint-totalPoints)) * 5) / 60);
+var elapsedMins = dmod(((maxPoint-(maxPoint-totalPoints)) * 5),60);
+
+
+var estimatedTimeFormat = estimatedMonth+"월 "+estimatedDate+"일 "+estimatedHour+"시 "+estimatedMin+"분";
+var curTimeFormat = curMonth+"월 "+curDate+"일 "+curHour+"시 "+curMin+"분";
+
+document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", 소모 수치 : "+totalPoints+" ("+pointsPerSong+" x "+numOfSongs+"곡)<br />기준 시간 : "+curTimeFormat+"<br />예상 시간 : "+estimatedTimeFormat+" 전후 ("+elapsedHours+"시간 "+elapsedMins+"분 전후)";
+
+}
 
