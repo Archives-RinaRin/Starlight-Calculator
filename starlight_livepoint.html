@@ -55,6 +55,38 @@
 </div>
 <input type="button" class="generalBtns calcBtns" value="계산" onclick="calcPointPerSong();" />
 
+<h4>이벤트 소모 스태미나 계산</h4>
+<div id="calc_form_03">
+
+<h5>그루브 이벤트 (LIVE Groove)</h5>
+<select name="pts_per_difficulty" id="pts_per_difficulty">
+<option value="20">데뷔 (20스태미나)</option>
+<option value="30">레귤러 (30스태미나)</option>
+<option value="40">프로 (40스태미나)</option>
+<option value="50" selected="selected">마스터/마스터+ (50스태미나)</option>
+</select>
+<input type="checkbox" name="special_difficulty" id="special_difficulty" /><label for="special_difficulty">마스터+ 난이도</label>
+<br />
+<input type="button" class="generalBtns calcBtns" value="계산" onclick="calcEventLivePoint.LiveGroove();" />
+</div>
+
+<div id="calc_form_04">
+<h5>퍼레이드(투어) 이벤트 (LIVE Parade)</h5>
+<select name="pts_per_course" id="pts_per_course">
+<option value="10">1곡 (10스태미나)</option>
+<option value="15">1곡 (15스태미나)</option>
+<option value="20">1곡 (20스태미나)</option>
+<option value="25">2곡 (25스태미나)</option>
+<option value="30">2곡 (30스태미나)</option>
+<option value="35">2곡 (35스태미나)</option>
+<option value="40">3곡 (40스태미나)</option>
+<option value="45">3곡 (45스태미나)</option>
+<option value="50">3곡 (50스태미나)</option>
+</select>
+<br />
+<input type="button" class="generalBtns calcBtns" value="계산" onclick="calcEventLivePoint.LiveTour();" />
+
+
 
 </form>
 

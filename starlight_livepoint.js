@@ -136,3 +136,106 @@ document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", �
 
 }
 
+var calcEventLivePoint = {
+ LiveGroove = function(){
+  var pointsPerDifficulty = new Number(document.getElementById("pts_per_difficulty").value);
+  var isSpecialDifficulty = document.getElementById("special_difficulty").checked;
+  switch(pointsPerDifficulty){
+   case 20:
+    var eventPointsShort = 144;
+    var eventPointsLong = eventPointsShort+32;
+   break;
+   case 30:
+    var eventPointsShort = 239;
+    var eventPointsLong = eventPointsShort+53;
+   break;
+   case 40:
+    var eventPointsShort = 343;
+    var eventPointsLong = eventPointsShort+76;
+   break;
+   case 50:
+    var eventPointsShort = 461;
+    var eventPointsLong = (isSpecialDifficulty == true) ? (eventPointsShort+114) : (eventPointsShort+103);
+   break;
+  }
+  
+  var curTimestamp = new Date();
+  var maxPoint = maxPointsByLevel();
+
+  var elapsedTime = Math.abs(5 * 60 * (maxPoint-(maxPoint-pointsPerDifficulty)));
+
+  if((maxPoint-pointsPerDifficulty) < 0){
+   alert("소모되는 스태미나가 최대 스태미나보다 많습니다.");
+   return;
+  }
+
+  var estimatedMaxPointTime = new Date(new Number(curTimestamp)+(1000 * elapsedTime));
+
+  var curMonth = curTimestamp.getMonth()+1;
+  var curDate = curTimestamp.getDate();
+  var curHour = curTimestamp.getHours();
+  var curMin = curTimestamp.getMinutes();
+
+
+  var estimatedMonth = estimatedMaxPointTime.getMonth()+1;
+  var estimatedDate = estimatedMaxPointTime.getDate();
+  var estimatedHour = estimatedMaxPointTime.getHours();
+  var estimatedMin = estimatedMaxPointTime.getMinutes();
+
+  var elapsedHours = Math.floor(((maxPoint-(maxPoint-pointsPerDifficulty)) * 5) / 60);
+  var elapsedMins = dmod(((maxPoint-(maxPoint-pointsPerDifficulty)) * 5),60);
+
+
+  var estimatedTimeFormat = estimatedMonth+"월 "+estimatedDate+"일 "+estimatedHour+"시 "+estimatedMin+"분";
+  var curTimeFormat = curMonth+"월 "+curDate+"일 "+curHour+"시 "+curMin+"분";
+  
+  document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", 소모량 : "+pointsPerDifficulty+"<br />(획득 이벤트 포인트 : "+eventPointsShort+"("+eventPointsLong+")pts,)<br />기준 시간 : "+curTimeFormat+"<br />예상 시간 : "+estimatedTimeFormat+" 전후 ("+elapsedHours+"시간 "+elapsedMins+"분 전후)";
+ },
+ LiveTour = function(){
+  var pointsPerCourse = new Number(document.getElementById("pts_per_course").value);
+  switch(pointsPerCourse){
+   case 10: var eventAudiences = 3400; break;
+   case 15: var eventAudiences = 5600; break;
+   case 20: var eventAudiences = 8000; break;
+   case 25: var eventAudiences = 8900; break;
+   case 30: var eventAudiences = 11700; break;
+   case 35: var eventAudiences = 14700; break;
+   case 40: var eventAudiences = 14900; break;
+   case 45: var eventAudiences = 18400; break;
+   case 50: var eventAudiences = 22000; break;
+  }
+  
+  var curTimestamp = new Date();
+  var maxPoint = maxPointsByLevel();
+
+  var elapsedTime = Math.abs(5 * 60 * (maxPoint-(maxPoint-pointsPerCourse)));
+
+  if((maxPoint-pointsPerCourse) < 0){
+   alert("소모되는 스태미나가 최대 스태미나보다 많습니다.");
+   return;
+  }
+
+  var estimatedMaxPointTime = new Date(new Number(curTimestamp)+(1000 * elapsedTime));
+
+  var curMonth = curTimestamp.getMonth()+1;
+  var curDate = curTimestamp.getDate();
+  var curHour = curTimestamp.getHours();
+  var curMin = curTimestamp.getMinutes();
+
+
+  var estimatedMonth = estimatedMaxPointTime.getMonth()+1;
+  var estimatedDate = estimatedMaxPointTime.getDate();
+  var estimatedHour = estimatedMaxPointTime.getHours();
+  var estimatedMin = estimatedMaxPointTime.getMinutes();
+
+  var elapsedHours = Math.floor(((maxPoint-(maxPoint-pointsPerCourse)) * 5) / 60);
+  var elapsedMins = dmod(((maxPoint-(maxPoint-pointsPerCourse)) * 5),60);
+
+
+  var estimatedTimeFormat = estimatedMonth+"월 "+estimatedDate+"일 "+estimatedHour+"시 "+estimatedMin+"분";
+  var curTimeFormat = curMonth+"월 "+curDate+"일 "+curHour+"시 "+curMin+"분";
+  
+  document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", 소모량 : "+pointsPerCourse+"<br />(확보 관객수 : "+eventAudiences+"명)<br />기준 시간 : "+curTimeFormat+"<br />예상 시간 : "+estimatedTimeFormat+" 전후 ("+elapsedHours+"시간 "+elapsedMins+"분 전후)";
+ }
+};
+
