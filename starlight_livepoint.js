@@ -139,24 +139,18 @@ document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", �
 function calcLiveGroove(){
  var pointsPerDifficulty = new Number(document.getElementById("pts_per_difficulty").value);
  var isSpecialDifficulty = document.getElementById("special_difficulty").checked;
- var eventPointsShort = 0, eventPointsLong = 0;
- switch(pointsPerDifficulty){
-  case 20:
-   eventPointsShort = 144;
-   eventPointsLong = eventPointsShort+32;
-  break;
-  case 30:
-   eventPointsShort = 239;
-   eventPointsLong = eventPointsShort+53;
-  break;
-  case 40:
-   eventPointsShort = 343;
-   eventPointsLong = eventPointsShort+76;
-  break;
-  case 50:
-   eventPointsShort = 461;
-   eventPointsLong = (isSpecialDifficulty == true) ? (eventPointsShort+114) : (eventPointsShort+103);
-  break;
+ if(pointsPerDifficulty == 20){
+  var eventPointsShort = 144;
+  var eventPointsLong = eventPointsShort+32;
+ }else if(pointsPerDifficulty == 30){
+  var eventPointsShort = 239;
+  var eventPointsLong = eventPointsShort+53;
+ }else if(pointsPerDifficulty == 40){
+  var eventPointsShort = 343;
+  var eventPointsLong = eventPointsShort+76;
+ }else if(pointsPerDifficulty == 50){
+  var eventPointsShort = 461;
+  var eventPointsLong = (isSpecialDifficulty == true) ? (eventPointsShort+114) : (eventPointsShort+103);
  }
  
  var curTimestamp = new Date();
@@ -194,17 +188,15 @@ function calcLiveGroove(){
 function calcLiveTour(){
  var pointsPerCourse = new Number(document.getElementById("pts_per_course").value);
  var eventAudiences = 0;
- switch(pointsPerCourse){
-  case 10: eventAudiences = 3400; break;
-  case 15: eventAudiences = 5600; break;
-  case 20: eventAudiences = 8000; break;
-  case 25: eventAudiences = 8900; break;
-  case 30: eventAudiences = 11700; break;
-  case 35: eventAudiences = 14700; break;
-  case 40: eventAudiences = 14900; break;
-  case 45: eventAudiences = 18400; break;
-  case 50: eventAudiences = 22000; break;
- }
+ if(pointsPerCourse == 10){var eventAudiences = 3400;}
+ else if(pointsPerCourse == 15){var eventAudiences = 5600;}
+ else if(pointsPerCourse == 20){var eventAudiences = 8000;}
+ else if(pointsPerCourse == 25){var eventAudiences = 8900;}
+ else if(pointsPerCourse == 30){var eventAudiences = 11700;}
+ else if(pointsPerCourse == 35){var eventAudiences = 14700;}
+ else if(pointsPerCourse == 40){var eventAudiences = 14900;}
+ else if(pointsPerCourse == 45){var eventAudiences = 18400;}
+ else if(pointsPerCourse == 50){var eventAudiences = 22000;}
   
  var curTimestamp = new Date();
  var maxPoint = maxPointsByLevel();
