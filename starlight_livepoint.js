@@ -182,7 +182,7 @@ function calcLiveGroove(){
  var estimatedTimeFormat = estimatedMonth+"월 "+estimatedDate+"일 "+estimatedHour+"시 "+estimatedMin+"분";
  var curTimeFormat = curMonth+"월 "+curDate+"일 "+curHour+"시 "+curMin+"분";
   
- document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", 소모량 : "+pointsPerDifficulty+"<br />(획득 이벤트 포인트 : "+eventPointsShort+"("+eventPointsLong+")pts,)<br />기준 시간 : "+curTimeFormat+"<br />예상 시간 : "+estimatedTimeFormat+" 전후 ("+elapsedHours+"시간 "+elapsedMins+"분 전후)";
+ document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", 소모량 : "+pointsPerDifficulty+"<br />(획득 이벤트 포인트 : "+eventPointsShort+"~"+eventPointsLong+"pts)<br />기준 시간 : "+curTimeFormat+"<br />예상 시간 : "+estimatedTimeFormat+" 전후 ("+elapsedHours+"시간 "+elapsedMins+"분 전후)";
 }
 
 function calcLiveTour(){
