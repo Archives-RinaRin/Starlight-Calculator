@@ -139,22 +139,23 @@ document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", �
 function calcLiveGroove(){
  var pointsPerDifficulty = new Number(document.getElementById("pts_per_difficulty").value);
  var isSpecialDifficulty = document.getElementById("special_difficulty").checked;
+ var eventPointsShort = 0, eventPointsLong = 0;
  switch(pointsPerDifficulty){
   case 20:
-   var eventPointsShort = 144;
-   var eventPointsLong = eventPointsShort+32;
+   eventPointsShort = 144;
+   eventPointsLong = eventPointsShort+32;
   break;
   case 30:
-   var eventPointsShort = 239;
-   var eventPointsLong = eventPointsShort+53;
+   eventPointsShort = 239;
+   eventPointsLong = eventPointsShort+53;
   break;
- case 40:
-   var eventPointsShort = 343;
-   var eventPointsLong = eventPointsShort+76;
+  case 40:
+   eventPointsShort = 343;
+   eventPointsLong = eventPointsShort+76;
   break;
   case 50:
-   var eventPointsShort = 461;
-   var eventPointsLong = (isSpecialDifficulty == true) ? (eventPointsShort+114) : (eventPointsShort+103);
+   eventPointsShort = 461;
+   eventPointsLong = (isSpecialDifficulty == true) ? (eventPointsShort+114) : (eventPointsShort+103);
   break;
  }
  
@@ -192,16 +193,17 @@ function calcLiveGroove(){
 
 function calcLiveTour(){
  var pointsPerCourse = new Number(document.getElementById("pts_per_course").value);
+ var eventAudiences = 0;
  switch(pointsPerCourse){
-  case 10: var eventAudiences = 3400; break;
-  case 15: var eventAudiences = 5600; break;
-  case 20: var eventAudiences = 8000; break;
-  case 25: var eventAudiences = 8900; break;
-  case 30: var eventAudiences = 11700; break;
-  case 35: var eventAudiences = 14700; break;
-  case 40: var eventAudiences = 14900; break;
-  case 45: var eventAudiences = 18400; break;
-  case 50: var eventAudiences = 22000; break;
+  case 10: eventAudiences = 3400; break;
+  case 15: eventAudiences = 5600; break;
+  case 20: eventAudiences = 8000; break;
+  case 25: eventAudiences = 8900; break;
+  case 30: eventAudiences = 11700; break;
+  case 35: eventAudiences = 14700; break;
+  case 40: eventAudiences = 14900; break;
+  case 45: eventAudiences = 18400; break;
+  case 50: eventAudiences = 22000; break;
  }
   
  var curTimestamp = new Date();
