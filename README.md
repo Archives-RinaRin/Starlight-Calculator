@@ -5,4 +5,4 @@
 https://senarin.github.io/Starlight/starlight_livepoint.html
 
 # 기타 안내
-이 프로그램은 반다이 남코 엔터테인먼트 및 사이게임즈(Cygames)와 직접적 연관이 없으며, 해당 게임에 대한 모든 법적 권리는 각 당사자에게 있습니다.
+이 프로그램은 반다이 남코 엔터테인먼트 및 사이게임즈(Cygames)와 직접적 연관이 없으며, 해당 게임에 대한 저작권 등은 각 당사자에게 있습니다.
