@@ -5,15 +5,24 @@ function maxPointsByLevel(){
  
  var basePoint = 40; // 1레벨 때의 최대 스태미나
  var maxPoint = basePoint;
- for(var k=0; k<level; k++){
-  if(k < 20){maxPoint += (1 / 2);} // 20레벨 이하 : 2레벨당 1 증가
-  else if(k < 50){maxPoint += (1 / 3);} // 21~50레벨 : 3레벨당 1 증가
-  else if(k < 90){maxPoint += (1 / 4);} // 51~90레벨 : 4레벨당 1 증가
-  else if(k < 140){maxPoint += (1 / 5);} // 91~140레벨 : 5레벨당 1 증가
-  else if(k < 300){maxPoint += (1 / 10);} // 141~300레벨 : 10레벨당 1 증가
-  else{maxPoint = 0;}
+ var k = 1;
+ while(k <= 300){
+  if(k <= 20){
+   if(k % 2 == 0){maxPoint++;}
+  }else if(k <= 50){
+    if(k % 3 == 0){maxPoint++;}
+  }else if(k <= 90){
+    if(k % 4 == 0){maxPoint++;}
+  }else if(k <= 140){
+    if(k % 5 == 0){maxPoint++;}
+  }else if(k <= 300){
+    if(k % 10 == 0){maxPoint++;}
+  }else{
+   maxPoint = 0;
+   break;
+  }
+  if(k == level){break;}
  }
- if(level == 300){maxPoint++;}
  
  return Math.floor(maxPoint);
 }
