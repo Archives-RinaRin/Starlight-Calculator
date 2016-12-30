@@ -14,7 +14,7 @@ function maxPointsByLevel(){
   else{maxPoint = 0;}
  }
  
- return maxPoint;
+ return Math.floor(maxPoint);
 }
 
 function displayMaxPoint(){document.getElementById("max_point").innerHTML = maxPointsByLevel();}
