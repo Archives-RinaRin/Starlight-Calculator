@@ -7,6 +7,7 @@ function maxPointsByLevel(){
  var maxPoint = basePoint;
  var k = 1;
  while(k <= 300){
+  k++;
   if(k <= 20){
    if(k % 2 == 0){maxPoint++;}
   }else if(k <= 50){
@@ -22,7 +23,7 @@ function maxPointsByLevel(){
    break;
   }
   if(k == level){break;}
-  k++;
+
  }
  
  return Math.floor(maxPoint);
