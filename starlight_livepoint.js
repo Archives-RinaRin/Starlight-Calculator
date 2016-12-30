@@ -22,6 +22,7 @@ function maxPointsByLevel(){
    break;
   }
   if(k == level){break;}
+  k++;
  }
  
  return Math.floor(maxPoint);
