@@ -1,74 +1,33 @@
 function dmod(x,y){return x-(y * Math.floor(x / y));}
 
 function maxPointsByLevel(){
- var level = new Number(document.getElementById("prod_level").value);
- if(level == 1){return 40;}
- else if(level >= 2 && level <= 3){return 41;}
- else if(level >= 4 && level <= 5){return 42;}
- else if(level >= 6 && level <= 7){return 43;}
- else if(level >= 8 && level <= 9){return 44;}
- else if(level >= 10 && level <= 11){return 45;}
- else if(level >= 12 && level <= 13){return 46;}
- else if(level >= 14 && level <= 15){return 47;}
- else if(level >= 16 && level <= 17){return 48;}
- else if(level >= 18 && level <= 19){return 49;}
- else if(level >= 20 && level <= 22){return 50;}
- else if(level >= 23 && level <= 25){return 51;}
- else if(level >= 26 && level <= 28){return 52;}
- else if(level >= 29 && level <= 31){return 53;}
- else if(level >= 32 && level <= 34){return 54;}
- else if(level >= 35 && level <= 37){return 55;}
- else if(level >= 38 && level <= 40){return 56;}
- else if(level >= 41 && level <= 43){return 57;}
- else if(level >= 44 && level <= 46){return 58;}
- else if(level >= 47 && level <= 49){return 59;}
- else if(level >= 50 && level <= 53){return 60;}
- else if(level >= 54 && level <= 57){return 61;}
- else if(level >= 58 && level <= 61){return 62;}
- else if(level >= 62 && level <= 65){return 63;}
- else if(level >= 66 && level <= 69){return 64;}
- else if(level >= 70 && level <= 73){return 65;}
- else if(level >= 74 && level <= 77){return 66;}
- else if(level >= 78 && level <= 81){return 67;}
- else if(level >= 82 && level <= 85){return 68;}
- else if(level >= 86 && level <= 89){return 69;}
- else if(level >= 90 && level <= 94){return 70;}
- else if(level >= 95 && level <= 99){return 71;}
- else if(level >= 100 && level <= 104){return 72;}
- else if(level >= 105 && level <= 109){return 73;}
- else if(level >= 110 && level <= 114){return 74;}
- else if(level >= 115 && level <= 119){return 75;}
- else if(level >= 120 && level <= 124){return 76;}
- else if(level >= 125 && level <= 129){return 77;}
- else if(level >= 130 && level <= 134){return 78;}
- else if(level >= 135 && level <= 139){return 79;}
- else if(level >= 140 && level <= 149){return 80;}
- else if(level >= 150 && level <= 159){return 81;}
- else if(level >= 160 && level <= 169){return 82;}
- else if(level >= 170 && level <= 179){return 83;}
- else if(level >= 180 && level <= 189){return 84;}
- else if(level >= 190 && level <= 199){return 85;}
- else if(level >= 200 && level <= 209){return 86;}
- else if(level >= 210 && level <= 219){return 87;}
- else if(level >= 220 && level <= 229){return 88;}
- else if(level >= 230 && level <= 239){return 89;}
- else if(level >= 240 && level <= 249){return 90;}
- else if(level >= 250 && level <= 259){return 91;}
- else if(level >= 260 && level <= 269){return 92;}
- else if(level >= 270 && level <= 279){return 93;}
- else if(level >= 280 && level <= 289){return 94;}
- else if(level >= 290 && level <= 299){return 95;}
- else if(level == 300){return 96;}
- else{return 0;}
+ var level = new Number(document.getElementById("prod_level").value); // 입력 프로듀서 레벨
+ 
+ var basePoint = 40; // 1레벨 때의 최대 스태미나
+ var maxPoint = basePoint;
+ for(var k=0; k<level; k++){
+  if(k < 20){maxPoint += (1 / 2);} // 20레벨 이하 : 2레벨당 1 증가
+  else if(k < 50){maxPoint += (1 / 3);} // 21~50레벨 : 3레벨당 1 증가
+  else if(k < 90){maxPoint += (1 / 4);} // 51~90레벨 : 4레벨당 1 증가
+  else if(k < 140){maxPoint += (1 / 5);} // 91~140레벨 : 5레벨당 1 증가
+  else if(k < 300){maxPoint += (1 / 10);} // 141~300레벨 : 10레벨당 1 증가
+  else{maxPoint = 0;}
+ }
+ 
+ return maxPoint;
 }
 
 function displayMaxPoint(){document.getElementById("max_point").innerHTML = maxPointsByLevel();}
 
+
+/**
+ * 잔여 스태미나에 따른 회복 계산
+ */
 function calcPoint(){
 
  var curTimestamp = new Date();
  var maxPoint = maxPointsByLevel();
- var curPoint = new Number(document.getElementById("point_now").value);
+ var curPoint = new Number(document.getElementById("point_now").value); // 현재 스태미나
 
  var elapsedTime = (5 * 60 * (maxPoint-curPoint));
  var estimatedMaxPointTime = new Date(new Number(curTimestamp)+(1000 * elapsedTime));
@@ -94,13 +53,16 @@ function calcPoint(){
  document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", 현재 수치 : "+curPoint+"<br />기준 시간 : "+curTimeFormat+"<br />예상 시간 : "+estimatedTimeFormat+" 전후 ("+elapsedHours+"시간 "+elapsedMins+"분 전후)";
 }
 
+/**
+ * 곡 갯수별 소모 스태미나에 따른 계산
+ */
 function calcPointPerSong(){
-var pointsPerSong = new Number(document.getElementById("pts_per_song").value);
-var numOfSongs = new Number(document.getElementById("num_songs").value);
-var eventCommodities = (25+((pointsPerSong-10) * 3))+Math.floor(pointsPerSong / 15);
+var pointsPerSong = new Number(document.getElementById("pts_per_song").value); // 곡당 스태미나
+var numOfSongs = new Number(document.getElementById("num_songs").value); // 곡 갯수
+var eventCommodities = (25+((pointsPerSong-10) * 3))+Math.floor(pointsPerSong / 15); // 곡당 이벤트 재화 (재화수집 이벤트) 획득 수 계산
 
-var totalPoints = (pointsPerSong * numOfSongs);
-var totalEventCommodities = (eventCommodities * numOfSongs);
+var totalPoints = (pointsPerSong * numOfSongs); // 합계 소모 스태미나
+var totalEventCommodities = (eventCommodities * numOfSongs); // 획득 이벤트 재화
 
 var curTimestamp = new Date();
 var maxPoint = maxPointsByLevel();
@@ -136,19 +98,22 @@ document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", �
 
 }
 
+/**
+ * 그루브(버스트) 소모 스태미나 회복 계산
+ */
 function calcLiveGroove(){
  var pointsPerDifficulty = new Number(document.getElementById("pts_per_difficulty").value);
- var isSpecialDifficulty = document.getElementById("special_difficulty").checked;
- if(pointsPerDifficulty == 20){
+ var isSpecialDifficulty = document.getElementById("special_difficulty").checked; // 앵콜곡 마스터+ 난이도 여부
+ if(pointsPerDifficulty == 20){ // 데뷔
   var eventPointsShort = 144;
   var eventPointsLong = eventPointsShort+32;
- }else if(pointsPerDifficulty == 30){
+ }else if(pointsPerDifficulty == 30){ // 레귤러
   var eventPointsShort = 239;
   var eventPointsLong = eventPointsShort+53;
- }else if(pointsPerDifficulty == 40){
+ }else if(pointsPerDifficulty == 40){ // 프로
   var eventPointsShort = 343;
   var eventPointsLong = eventPointsShort+76;
- }else if(pointsPerDifficulty == 50){
+ }else if(pointsPerDifficulty == 50){ // 마스터
   var eventPointsShort = 461;
   var eventPointsLong = (isSpecialDifficulty == true) ? (eventPointsShort+114) : (eventPointsShort+103);
  }
@@ -182,21 +147,24 @@ function calcLiveGroove(){
  var estimatedTimeFormat = estimatedMonth+"월 "+estimatedDate+"일 "+estimatedHour+"시 "+estimatedMin+"분";
  var curTimeFormat = curMonth+"월 "+curDate+"일 "+curHour+"시 "+curMin+"분";
   
- document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", 소모량 : "+pointsPerDifficulty+"<br />(획득 이벤트 포인트 : "+eventPointsShort+"~"+eventPointsLong+"pts)<br />기준 시간 : "+curTimeFormat+"<br />예상 시간 : "+estimatedTimeFormat+" 전후 ("+elapsedHours+"시간 "+elapsedMins+"분 전후)";
+ document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", 소모량 : "+pointsPerDifficulty+"<br />(최대 획득 이벤트 포인트 : "+eventPointsShort+"~"+eventPointsLong+"pts)<br />기준 시간 : "+curTimeFormat+"<br />예상 시간 : "+estimatedTimeFormat+" 전후 ("+elapsedHours+"시간 "+elapsedMins+"분 전후)";
 }
 
+/**
+ * 퍼레이드(투어) 소모 스태미나 회복 계산
+ */
 function calcLiveTour(){
  var pointsPerCourse = new Number(document.getElementById("pts_per_course").value);
- var eventAudiences = 0;
- if(pointsPerCourse == 10){var eventAudiences = 3400;}
- else if(pointsPerCourse == 15){var eventAudiences = 5600;}
- else if(pointsPerCourse == 20){var eventAudiences = 8000;}
- else if(pointsPerCourse == 25){var eventAudiences = 8900;}
- else if(pointsPerCourse == 30){var eventAudiences = 11700;}
- else if(pointsPerCourse == 35){var eventAudiences = 14700;}
- else if(pointsPerCourse == 40){var eventAudiences = 14900;}
- else if(pointsPerCourse == 45){var eventAudiences = 18400;}
- else if(pointsPerCourse == 50){var eventAudiences = 22000;}
+ var eventAudiences = 0; // 확보 관객수
+ if(pointsPerCourse == 10){var eventAudiences = 3400;} // 1곡
+ else if(pointsPerCourse == 15){var eventAudiences = 5600;} // 1곡
+ else if(pointsPerCourse == 20){var eventAudiences = 8000;} // 1곡
+ else if(pointsPerCourse == 25){var eventAudiences = 8900;} // 2곡
+ else if(pointsPerCourse == 30){var eventAudiences = 11700;} // 2곡
+ else if(pointsPerCourse == 35){var eventAudiences = 14700;} // 2곡
+ else if(pointsPerCourse == 40){var eventAudiences = 14900;} // 3곡
+ else if(pointsPerCourse == 45){var eventAudiences = 18400;} // 3곡
+ else if(pointsPerCourse == 50){var eventAudiences = 22000;} // 3곡
   
  var curTimestamp = new Date();
  var maxPoint = maxPointsByLevel();
@@ -225,6 +193,6 @@ function calcLiveTour(){
  var estimatedTimeFormat = estimatedMonth+"월 "+estimatedDate+"일 "+estimatedHour+"시 "+estimatedMin+"분";
  var curTimeFormat = curMonth+"월 "+curDate+"일 "+curHour+"시 "+curMin+"분";
  
- document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", 소모량 : "+pointsPerCourse+"<br />(확보 관객수 : "+eventAudiences+"명)<br />기준 시간 : "+curTimeFormat+"<br />예상 시간 : "+estimatedTimeFormat+" 전후 ("+elapsedHours+"시간 "+elapsedMins+"분 전후)";
+ document.getElementById("calc_result").innerHTML = "최대치 : "+maxPoint+", 소모량 : "+pointsPerCourse+"<br />(확보 관객수 : 최소 "+eventAudiences+"명 이상)<br />기준 시간 : "+curTimeFormat+"<br />예상 시간 : "+estimatedTimeFormat+" 전후 ("+elapsedHours+"시간 "+elapsedMins+"분 전후)";
 }
 
