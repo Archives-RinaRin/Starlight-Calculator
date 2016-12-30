@@ -13,6 +13,7 @@ function maxPointsByLevel(){
   else if(k < 300){maxPoint += (1 / 10);} // 141~300레벨 : 10레벨당 1 증가
   else{maxPoint = 0;}
  }
+ if(level == 300){maxPoint++;}
  
  return Math.floor(maxPoint);
 }
